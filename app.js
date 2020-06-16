@@ -14,7 +14,7 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
 //Firebase Init
-let serviceAccount = require("C:/Users/terry/Desktop/Node.js_projects/CatProject/serviceAccountKey.json");
+let serviceAccount = require("C:/Users/terry/Desktop/Node.js_projects/CatProject/conf/serviceAccountKey.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
