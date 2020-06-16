@@ -1,0 +1,113 @@
+<doctype HTML>
+
+    <head>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <!-- 화면 캡쳐 CDN -->
+        <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+
+        <link rel = "stylesheet" href = "myCatGenerator.css">
+        <script type = "text/javascript" src = "myCatGenerator.js"></script>
+
+    </head>
+
+    <body>
+        
+        <div class = "box">
+                
+            <div class = "cat" id = "capture">
+
+                <div id = "base">
+                    <img src = "data/long-hair.png">
+                </div>
+
+                <div id = "coat"></div>
+                <div id = "eye"></div>
+                <div id = "nose"></div>
+
+            </div>
+            
+            <div class = "ctrl">
+                <button id = "save">save</button>
+                <button id = "reset">reset</button>
+            </div>
+
+            <div class = "opt">
+
+                <!-- COAT -->
+                <fieldset>
+                    <legend>코트</legend>
+                    <label><input type = "radio" name = "coat" value = "gold"
+                    onclick = "longHairCoat(this.value)">골드</label><br>
+                    <label><input type = "radio" name = "coat" value = "allwhite"
+                    onclick = "longHairCoat(this.value)">올화이트</label><br>
+                </fieldset>
+
+                <!-- EYE -->
+                <fieldset>
+                    <legend>눈</legend>
+                    <label><input type = "radio" name = "eye" value = "ash-yellow"
+                    onclick = "longHairEye(this.value)">잿빛노랑색</label><br>
+                    <label><input type = "radio" name = "eye" value = "brown"
+                    onclick = "longHairEye(this.value)">갈색</label><br>
+                    <label><input type = "radio" name = "eye" value = "pumpkin"
+                    onclick = "longHairEye(this.value)">호박색</label><br>
+                    <label><input type = "radio" name = "eye" value = "emerald"
+                    onclick = "longHairEye(this.value)">에메랄드색</label><br>
+                    <label><input type = "radio" name = "eye" value = "yellow"
+                    onclick = "longHairEye(this.value)">노랑색</label><br>
+                    <label><input type = "radio" name = "eye" value = "deepblue"
+                    onclick = "longHairEye(this.value)">진한파랑색</label><br>
+                    <label><input type = "radio" name = "eye" value = "odd"
+                    onclick = "longHairEye(this.value)">오드아이</label>
+                </fieldset>
+
+                <!-- NOSE & EAR -->
+                <fieldset>
+                    <legend>코&귀</legend>
+                    <label><input type = "radio" name = "nose" value = "pink"
+                    onclick = "longHairNose(this.value)">분홍</label><br>
+                    <label><input type = "radio" name = "nose" value = "brick"
+                    onclick = "longHairNose(this.value)">벽돌</label><br>
+                    <label><input type = "radio" name = "nose" value = "brown"
+                        onclick = "longHairNose(this.value)">브라운</label><br>
+                    <label><input type = "radio" name = "nose" value = "black"
+                    onclick = "longHairNose(this.value)">검정</label>
+                </fieldset>
+
+            </div>
+
+
+            <!-- Ajax 이미지 경로 전송 -->
+            <script>
+                document.getElementById("save").addEventListener("click", async function() {
+
+                    let canvas = await html2canvas(document.querySelector("#capture"), {
+                        logging: true,
+                        allowTaint: true,
+                    });
+                    let uri = canvas.toDataURL("image/png");
+
+                    console.log("이미지 로컬 경로 : ", uri);
+                
+                  sendAjax("http://localhost:3000/upload", {
+                    imagePath: uri,
+                  });
+
+                });
+
+                //post 보내는 함수
+                function sendAjax(url, data) {
+                  data = JSON.stringify(data);
+                  var xhr = new XMLHttpRequest();
+                  xhr.open("POST", url);
+                  xhr.setRequestHeader("Content-Type", "application/json");
+                  xhr.send(data);
+                  console.log("보내기 성공");
+                }
+              </script>
+
+    </body>
+
+</HTML>

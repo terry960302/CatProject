@@ -1,0 +1,130 @@
+<doctype HTML>
+
+    <head>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <!-- 화면 캡쳐 CDN -->
+        <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+
+        <link rel = "stylesheet" href = "myCatGenerator.css">
+        <script type = "text/javascript" src = "myCatGenerator.js"></script>
+
+    </head>
+
+    <body>
+        
+        <div class = "box">
+
+            <div class = "manual"></div>
+
+            <div class = "cat" id = "capture">
+
+                <div id = "base">
+                    <img src = "data/short-hair.png">
+                </div>
+
+                <div id = "coat"></div>
+                <div id = "eye"></div>
+                <div id = "nose"></div>
+
+            </div>
+
+            <div class = "opt">
+
+                <!-- COAT -->
+                <fieldset id = "coatOpt">
+                    <legend>코트</legend>
+                    <label><input type = "radio" name = "coat" value = "allcheese"
+                    onclick = "shortHairCoat(this.value)">올치즈</label><br>
+                    <label><input type = "radio" name = "coat" value = "halfcheese1"
+                    onclick = "shortHairCoat(this.value)">반치즈1</label><br>
+                    <label><input type = "radio" name = "coat" value = "halfcheese2"
+                    onclick = "shortHairCoat(this.value)">반치즈2</label><br>
+                    <label><input type = "radio" name = "coat" value = "allwhite"
+                    onclick = "shortHairCoat(this.value)">올화이트</label><br>
+                    <label><input type = "radio" name = "coat" value = "calico1"
+                    onclick = "shortHairCoat(this.value)">삼색이</label><br>
+                    <label><input type = "radio" name = "coat" value = "calico2"
+                        onclick = "shortHairCoat(this.value)">밀가루삼색이</label><br>
+                    <label><input type = "radio" name = "coat" value = "milkcow"
+                    onclick = "shortHairCoat(this.value)">젖소</label><br>
+                    <label><input type = "radio" name = "coat" value = "tuxedo"
+                    onclick = "shortHairCoat(this.value)">턱시도</label><br>
+                    <label><input type = "radio" name = "coat" value = "allblack"
+                    onclick = "shortHairCoat(this.value)">올블랙</label>
+                </fieldset>
+
+                <!-- EYE -->
+                <fieldset id = "eyeOpt">
+                    <legend>눈</legend>
+                    <label><input type = "radio" name = "eye" value = "ash-yellow"
+                    onclick = "shortHairEye(this.value)">잿빛노랑색</label><br>
+                    <label><input type = "radio" name = "eye" value = "brown"
+                    onclick = "shortHairEye(this.value)">갈색</label><br>
+                    <label><input type = "radio" name = "eye" value = "pumpkin"
+                    onclick = "shortHairEye(this.value)">호박색</label><br>
+                    <label><input type = "radio" name = "eye" value = "emerald"
+                    onclick = "shortHairEye(this.value)">에메랄드색</label><br>
+                    <label><input type = "radio" name = "eye" value = "yellow"
+                    onclick = "shortHairEye(this.value)">노랑색</label><br>
+                    <label><input type = "radio" name = "eye" value = "deepblue"
+                    onclick = "shortHairEye(this.value)">진한파랑색</label><br>
+                    <label><input type = "radio" name = "eye" value = "odd"
+                    onclick = "shortHairEye(this.value)">오드아이</label>
+                </fieldset>
+
+                <!-- NOSE & EAR -->
+                <fieldset id = "noseOpt">
+                    <legend>코&귀</legend>
+                    <label><input type = "radio" name = "nose" value = "pink"
+                    onclick = "shortHairNose(this.value)">분홍</label><br>
+                    <label><input type = "radio" name = "nose" value = "brick"
+                    onclick = "shortHairNose(this.value)">벽돌</label><br>
+                    <label><input type = "radio" name = "nose" value = "black"
+                    onclick = "shortHairNose(this.value)">검정</label>
+                </fieldset>
+
+            </div>
+
+            <div class = "ctrl">
+                <button id = "save">save</button>
+                <button id = "reset">reset</button>
+                <button id = "share">share</button>
+                <button id = "gallery">gallery</button>
+            </div>
+
+        </div>
+
+        <!-- Ajax 이미지 경로 전송 -->
+        <script>
+            document.getElementById("save").addEventListener("click", async function() {
+
+                let canvas = await html2canvas(document.querySelector("#capture"), {
+                    logging: true,
+                    allowTaint: true,
+                });
+                let uri = canvas.toDataURL("image/png");
+
+                console.log("이미지 로컬 경로 : ", uri);
+            
+              sendAjax("http://localhost:3000/upload", {
+                imagePath: uri,
+              });
+
+            });
+
+            //post 보내는 함수
+            function sendAjax(url, data) {
+              data = JSON.stringify(data);
+              var xhr = new XMLHttpRequest();
+              xhr.open("POST", url);
+              xhr.setRequestHeader("Content-Type", "application/json");
+              xhr.send(data);
+              console.log("보내기 성공");
+            }
+          </script>
+
+    </body>
+
+</HTML>

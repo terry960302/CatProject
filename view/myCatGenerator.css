@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&display=swap');
+
+input:focus {
+    outline: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gaegu', cursive;
+}
+
+img {
+    max-height: 100%;
+}
+
+/* RADIO BUTTON */
+
+input[type = "radio"] {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
+    transform: scale(1.5);
+    margin-left: 18px;
+    margin-right: 12px;
+}
+
+legend {
+    background-color: rgb(84, 175, 211);
+    color: white;
+    width: 200px;
+    text-align: center;
+    padding-block-start: 0.25em;
+    padding-block-end: 0.1em;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    border-radius: 10px 10px 0 0;
+}
+
+fieldset {
+    line-height: 1.8em;
+    border: none;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    padding-block-start: 1em;
+    padding-block-end: 1em;
+}
+
+/* FOR DESKTOP */
+.typeBox {
+    width: 100%;
+    text-align: center;
+    padding-top: 50px;
+    font-size: 2em;
+}
+
+.type {
+    height: 600px;
+    display: inline-block;
+    margin-top: 50px;
+}
+
+.scale {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transition: all 0.3s ease-in-out;
+}
+
+.scale:hover {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+}
+
+/* FOR MOBILE */
+@media ( max-width: 767px ) {
+
+    .typeBox {
+        width: 100%;
+        text-align: center;
+        padding-top: 50px;
+        font-size: 2em;
+    }
+
+    .type {
+        width: 300px;
+        height: 300px;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden;
+        display: block;
+    }
+
+    .scale {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transition: all 0.3s ease-in-out;   /* 부드러운 모션을 위해 추가*/
+    }
+
+}
+
+/* LAYOUT */
+
+.box {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.manual {
+    order: 1;
+    width: 400px;
+    height: 875px;
+    background-color: skyblue;
+}
+
+#capture {
+    /* capture box area */
+    width: 875px;
+    height: 875px;
+}
+
+.cat {
+    /* box */
+    order: 3;
+}
+
+#base {
+    /* img size */
+    width: 875px;
+    height: 875px;
+    /* img align */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#coat, #eye, #nose {
+    /* img size */
+    width: 875px;
+    height: 875px;
+    /* img align */
+    position: absolute;
+    top: 0;
+    /* img depth */
+    z-index: -30;
+}
+
+.opt {
+    /* box */
+    order: 2;
+    /* box size */
+    width: 280px;
+}
+
+#coatOpt, #eyeOpt, #noseOpt {
+    width: 200px;
+    border-radius: 0 0 10px 10px;
+    background-color: rgb(182, 229, 248);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    font-size: 1em;
+}
+
+.ctrl {
+    order: 4;
+    width: 125px;
+    height: 875px;
+}
+
+#reset, #save, #share, #gallery {
+    /* button size */
+    width: 125px;
+    height: 25%;
+    /* button style */
+    border: none;
+    background-color: skyblue;
+    /* font */
+    color: white;
+    font-family: 'Gaegu', cursive;
+    font-size: 1.5em;
+}
+
+#reset:hover, #save:hover, #share:hover, #gallery:hover {
+    background-color: rgb(84, 175, 211);
+}
