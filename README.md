@@ -10,7 +10,7 @@ to 디자이너 혜경님
    ```
    npm install
    ```
-3. app.js 파일로 들어가서 serviceAccountKey.json파일의 경로를 본인 컴퓨터와 호환되게 변경해줍니다.
+3. app.js 파일로 들어가서 serviceAccountKey.json파일의 경로를 본인 컴퓨터와 호환되게 변경해줍니다.(그전에 serviceAccountKey.json을 콘솔에서 다운받아 옵니다. 깃헙 보안상 올리지 않게 권장함.)
 
 4. 저장을 하고 터미널에 가서 아래 명령을 입력해줍니다.
    ```
